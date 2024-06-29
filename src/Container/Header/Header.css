@@ -27,13 +27,13 @@ body {
 
   .app_container h1{
     font-size: 3rem;
-    margin-bottom: 8rem;
+    margin-bottom: 10%;
     font-weight: 800;
   }
 
   .app_container p{
     font-size: 22px;
-    margin-bottom: 2rem;
+    margin-bottom: 3%;
     line-height: 40px;
   }
 
@@ -45,12 +45,12 @@ body {
     background-color: #510DA0;
     border-radius:20px;
     border: none;
-    margin-bottom: 10rem;
+    margin-bottom: 10%;
   }
 
   .app_container button:hover{
     cursor: pointer;
-    transition: 0.4s ease;
+    transition: 0.3s ease;
     background-color: black;
   }
 

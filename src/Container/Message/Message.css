@@ -1,0 +1,70 @@
+.container{
+    position: relative;
+    z-index: 1;
+    color: white; /* You can change the color to make it more readable against your background */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 10px; /* Optional: rounded corners */  
+    height:60vh;
+    width: 60vw;
+    margin-bottom: 23px;
+    overflow-y: auto;
+}
+
+.container img{
+    width: 60%;
+    background-color: red;
+}
+
+.message{
+    margin: 2rem;
+    padding: 1rem;
+    background-color: #8519ff;
+    border-radius: 10px;
+}
+
+.left{
+    float:left;
+    clear: both;
+}
+
+.right{
+    float: right;
+    clear: both;
+}
+
+.send{
+    margin-top: 1%;
+    max-width: 1400px;
+    width:100%;
+    
+}
+
+#messageInput{
+    width: 93%;
+    height: 36px;
+    border: none;
+    border-radius: 6px;
+    color: black;
+    background-color: darkgray;
+    margin-right: 5px;
+    outline: none;
+    font-size: 18px;
+    padding-left: 1rem;
+
+}
+
+::placeholder{
+    color: black;
+}
+
+.btn{
+    border:none;
+    height:36px;
+    border-radius: 6px;
+    background-color: #7f13fa;
+    color: white;
+    padding: 0 1rem;
+    font-size: 15px;
+}
