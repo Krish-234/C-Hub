@@ -1,16 +1,32 @@
-const io = require('socket.io');
+const io = require('socket.io')(8000);
+const cors = require('cors');
+const express = require('express');
+const app = express();
+
+app.use(cors());
+
+const server = require('http').createServer(app);
+const socketIo = require('socket.io')(server, {
+    cors: {
+        origin: '*', // Allow all origins
+        methods: ['GET', 'POST']
+    }
+});
 
 const users = {};
 
-io.on('connection', name => {
-    users[Socket.id] = name;
+socketIo.on('connection', socket => {
+    socket.on('new-user-joined', name => {
+        console.log(name);
+        users[socket.id] = name;
+        socket.broadcast.emit('user-joined', name);
+    });
 
-    Socket.on('new-user-joined', name => {
-        socket.broadcast.emit(`${name} joined the chat`);
-        }
-    )
+    socket.on('send', message => {
+        socket.broadcast.emit('receive', { message: message, name: users[socket.id] });
+    });
+});
 
-    
-
-
-})
+server.listen(8000, () => {
+    console.log('Server is running on port 8000');
+});
