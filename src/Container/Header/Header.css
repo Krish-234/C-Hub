@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: url('../../assets/bg3.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+  .app_container {
+    position: relative;
+    z-index: 1;
+    color: white; /* You can change the color to make it more readable against your background */
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 10px; /* Optional: rounded corners */  
+    height:60vh;
+    width: 60vw;
+  }
+
+  .app_container h1{
+    font-size: 3rem;
+    margin-bottom: 8rem;
+    font-weight: 800;
+  }
+
+  .app_container p{
+    font-size: 22px;
+    margin-bottom: 2rem;
+    line-height: 40px;
+  }
+
+  .app_container button{
+    margin: auto;
+    color: white;
+    padding: 0.8rem 1.8rem;
+    font-size: 20px;
+    background-color: #510DA0;
+    border-radius:20px;
+    border: none;
+    margin-bottom: 10rem;
+  }
+
+  .app_container button:hover{
+    cursor: pointer;
+    transition: 0.4s ease;
+    background-color: black;
+  }
+
+  a{
+    text-decoration: none;
+    color: white;
+  }
+  
