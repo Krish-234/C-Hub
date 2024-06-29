@@ -1,4 +1,4 @@
-const io = require('socket.io')(8000);
+const io = require('socket.io');
 const cors = require('cors');
 const express = require('express');
 const app = express();
@@ -17,7 +17,6 @@ const users = {};
 
 socketIo.on('connection', socket => {
     socket.on('new-user-joined', name => {
-        console.log(name);
         users[socket.id] = name;
         socket.broadcast.emit('user-joined', name);
     });
@@ -28,5 +27,5 @@ socketIo.on('connection', socket => {
 });
 
 server.listen(8000, () => {
-    console.log('Server is running on port 8000');
+    console.log('Server is running on  8000');
 });
