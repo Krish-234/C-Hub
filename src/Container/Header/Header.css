@@ -37,6 +37,23 @@ body {
     line-height: 40px;
   }
 
+  #nameInput{
+    width: 22%;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    color: white  ;
+    background-color: black;
+    margin-right: 5px;
+    outline: none;
+    font-size: 18px;
+    padding-left: 1rem;
+  }
+
+  #name::placeholder{
+   color: white;
+}
+
   .app_container button{
     margin: auto;
     color: white;
