@@ -3,6 +3,8 @@ import '../../client.js'
 import './Message.css'
 import io from 'socket.io-client';
 import { UserContext } from '../../Components/UserContext.jsx';
+// import logo from '../../assets/logo6.png'
+
 
 const socket = io('http://localhost:8000');
 
@@ -10,9 +12,8 @@ const Message = () => {
 
    const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
-  const [userJoined, setUserJoined] = useState('');
+  const [userJoinedMessages, setUserJoinedMessages] = useState([]);
   const { name } = useContext(UserContext);
-  const [position,setPosition] = useState('');
   
   // const cname = document.getElementById("name").value;
   // console.log(cname);
@@ -25,12 +26,18 @@ const Message = () => {
       socket.emit('new-user-joined', name);
 
       socket.on('user-joined', (name) => {
-        setUserJoined(`${name} joined the chat`);
+        setUserJoinedMessages((prev) => {
+          // Check if the user join message already exists
+          if (!prev.includes(`${name} joined the chat`)) {
+            return [...prev, `${name} joined the chat`];
+          }
+          return prev;
+        });
       });
 
       // When a message is received
       socket.on('receive', (data) => {
-        setMessages((prevMessages) => [...prevMessages, { name: data.name, message: data.message }]);
+        setMessages((prevMessages) => [...prevMessages, { name: data.name, message: data.message, type: 'left' }]);
       });
 
       return () => {
@@ -42,18 +49,22 @@ const Message = () => {
 
   const sendMessage = () => {
     socket.emit('send', message);
-    setMessages((prevMessages) => [...prevMessages, { name: 'You', message }]);
+    setMessages((prevMessages) => [...prevMessages, { name: 'You', message, type: 'right'}]);
     setMessage('');
   };
 
   return (
     <>
     <div className='container'>
-      <h2>Chat Application</h2>
+      {/* <img src={logo} alt="" /> */}
+      <h2>Private Chat</h2>
       <div>
-        {userJoined && <p className='message left'>{userJoined}</p>}
+        {/* <p className='message right'>you joined the chat</p> */}
+        {userJoinedMessages.map((msg,index)=>(
+          <p key={index} className='center'>{msg}</p>
+        ))}
         {messages.map((msg, index) => (
-          <p key={index} className='message'>
+          <p key={index} className={`message ${msg.type}`}>
             <strong>{msg.name}:</strong> {msg.message}
           </p>
         ))}

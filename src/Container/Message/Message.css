@@ -13,8 +13,12 @@
 }
 
 .container img{
-    width: 60%;
+    width: 10%;
     background-color: red;
+}
+
+.container h2{
+    text-align: center;
 }
 
 .message{
@@ -31,6 +35,14 @@
 
 .right{
     float: right;
+    clear: both;
+}
+
+.center{
+    margin: 2rem;
+    padding: 1rem;
+    font-size: 20px;
+    text-align: center;
     clear: both;
 }
 
