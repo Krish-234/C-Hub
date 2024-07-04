@@ -27,7 +27,7 @@ body {
 
   .app_container h1{
     font-size: 3rem;
-    margin-bottom: 10%;
+    margin-bottom: 6%;
     font-weight: 800;
   }
 
@@ -37,20 +37,21 @@ body {
     line-height: 40px;
   }
 
-  #nameInput{
+  #nameInput,#roomInput{
+    display: block;
+    margin: 1rem auto;
     width: 22%;
     height: 45px;
     border: none;
     border-radius: 20px;
-    color: white  ;
+    color: white;
     background-color: black;
-    margin-right: 5px;
     outline: none;
     font-size: 18px;
     padding-left: 1rem;
   }
 
-  #name::placeholder{
+  #nameInput::placeholder,#roomInput::placeholder{
    color: white;
 }
 
@@ -62,7 +63,7 @@ body {
     background-color: #510DA0;
     border-radius:20px;
     border: none;
-    margin-bottom: 10%;
+    margin-bottom: 6%;
   }
 
   .app_container button:hover{
