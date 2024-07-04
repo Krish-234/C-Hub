@@ -13,6 +13,7 @@ const Message = () => {
    const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [userJoinedMessages, setUserJoinedMessages] = useState([]);
+  const [userLeft,setUserLeft] = useState([]);
   const { name } = useContext(UserContext);
   
   // const cname = document.getElementById("name").value;
@@ -24,48 +25,54 @@ const Message = () => {
     if (name) {
       // When the user joins
       socket.emit('new-user-joined', name);
+      console.log(name);
 
       socket.on('user-joined', (name) => {
-        setUserJoinedMessages((prev) => {
-          // Check if the user join message already exists
-          if (!prev.includes(`${name} joined the chat`)) {
-            return [...prev, `${name} joined the chat`];
-          }
-          return prev;
-        });
+        setMessages((prevMessages) => [...prevMessages, { name, message: `${name} joined the chat`, type: 'center' }]);
+        // setUserJoinedMessages((prev) => [...prev, `${name} joined the chat`]);
+
+        // setUserJoinedMessages((prev) => {
+        //   // Check if the user join message already exists
+        //   if (!prev.includes(`${name} joined the chat`)) {
+        //     return [...prev, `${name} joined the chat`];
+        //   }
+        //   return prev;
+        // });
       });
 
       // When a message is received
       socket.on('receive', (data) => {
-        setMessages((prevMessages) => [...prevMessages, { name: data.name, message: data.message, type: 'left' }]);
+        setMessages((prevMessages) => [...prevMessages, {  message:`${data.name}: ${data.message}`, type: 'left' }]);
       });
+
+      socket.on('left', (name) => {
+        setMessages((prevMessages) => [...prevMessages, {name ,message: `${name} left the chat`, type: 'center' }]);
+      });
+
 
       return () => {
         socket.off('user-joined');
         socket.off('receive');
+        socket.off('left');
       };
     }
   }, [name]);
 
   const sendMessage = () => {
     socket.emit('send', message);
-    setMessages((prevMessages) => [...prevMessages, { name: 'You', message, type: 'right'}]);
+    setMessages((prevMessages) => [...prevMessages, {  message: `You: ${message}`, type: 'right'}]);
     setMessage('');
   };
 
   return (
     <>
     <div className='container'>
-      {/* <img src={logo} alt="" /> */}
       <h2>Private Chat</h2>
-      <div>
-        {/* <p className='message right'>you joined the chat</p> */}
-        {userJoinedMessages.map((msg,index)=>(
-          <p key={index} className='center'>{msg}</p>
-        ))}
+        <div className='join_msg'>
+        <p className='center'>You joined the chat</p>
         {messages.map((msg, index) => (
-          <p key={index} className={`message ${msg.type}`}>
-            <strong>{msg.name}:</strong> {msg.message}
+          <p key={index} className={`${msg.type}`}>
+            {msg.message}
           </p>
         ))}
       </div>
