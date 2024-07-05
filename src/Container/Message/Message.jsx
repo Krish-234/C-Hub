@@ -3,7 +3,7 @@ import './Message.css';
 import io from 'socket.io-client';
 import { UserContext } from '../../Components/UserContext.jsx';
 
-const socket = io('http://192.168.1.100:8000');
+const socket = io('http://localhost:8000');
 
 const Message = () => {
   const [messages, setMessages] = useState([]);

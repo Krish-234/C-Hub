@@ -36,6 +36,6 @@ socketIo.on('connection', socket => {
     });
 });
 
-server.listen(8000, '0.0.0.0', () => {
+server.listen(8000, () => {
     console.log('Server is running on 8000');
 });
