@@ -34,7 +34,7 @@ body {
   .app_container p{
     font-size: 20px;
     margin-bottom: 3%;
-    line-height: 40px;
+    line-height: 30px;
   }
 
   #nameInput,#roomInput{
@@ -97,11 +97,11 @@ body {
     }
     .app_container p{
       font-size: 17px;
-      margin-bottom: 8%;
+      margin-bottom: 10%;
     }
     .app_container button{
       font-size: 17px;
-      margin-bottom: 8%;
+      margin-bottom: 10%;
     }
   }
 
@@ -112,11 +112,12 @@ body {
     }
     .app_container h1{
       font-size: 2rem;
-      margin-bottom: 5%;
+      margin-bottom: 10%;
     }
     .app_container p{
       font-size: 15px;
-      margin-bottom: 10%;
+      line-height: 25px;
+      margin-bottom: 14%;
     }
     #nameInput,#roomInput{
       width: 55%;
@@ -124,7 +125,7 @@ body {
     }
     .app_container button{
       font-size: 15px;
-      margin-bottom: 10%;
+      margin-bottom: 14%;
     }
   }
 
@@ -139,7 +140,9 @@ body {
     }
     .app_container p{
       font-size: 12px;
-      margin-bottom: 15%;
+      line-height: 20px;
+      margin: 0 10px;
+      margin-bottom: 20%;
     }
     #nameInput,#roomInput{
       width: 70%;
