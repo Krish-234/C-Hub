@@ -5,7 +5,6 @@ import './Header.css';
 
 const Header = () => {
   const { name, setName } = useContext(UserContext);
-  const [room, setRoom] = useState('');
   const { setRoom: setContextRoom } = useContext(UserContext);
 
   const navigate = useNavigate();
