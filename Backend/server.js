@@ -5,10 +5,6 @@ const app = express();
 
 app.use(cors());
 
-app.get('/',(req,res) => {
-    res.json("hello world");
-})
-
 const server = require('http').createServer(app);
 const socketIo = require('socket.io')(server, {
     cors: {
@@ -39,6 +35,23 @@ socketIo.on('connection', socket => {
         }
     });
 });
+
+app.get('/', (req, res) => {
+    res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Chat Application</title>
+        </head>
+        <body>
+            <h1>Hello</h1>
+        </body>
+        </html>
+    `);
+});
+
 
 server.listen(8000, () => {
     console.log('Server is running on 8000');
