@@ -5,6 +5,10 @@ const app = express();
 
 app.use(cors());
 
+app.get('/',(req,res) => {
+    res.json("hello world");
+})
+
 const server = require('http').createServer(app);
 const socketIo = require('socket.io')(server, {
     cors: {
