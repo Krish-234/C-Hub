@@ -27,12 +27,12 @@ body {
 
   .app_container h1{
     font-size: 3rem;
-    margin-bottom: 6%;
+    margin-bottom: 4%;
     font-weight: 800;
   }
 
   .app_container p{
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 3%;
     line-height: 40px;
   }
@@ -40,7 +40,7 @@ body {
   #nameInput,#roomInput{
     display: block;
     margin: 1rem auto;
-    width: 22%;
+    width: 30%;
     height: 45px;
     border: none;
     border-radius: 20px;
@@ -59,11 +59,11 @@ body {
     margin: auto;
     color: white;
     padding: 0.8rem 1.8rem;
-    font-size: 20px;
+    font-size: 18px;
     background-color: #510DA0;
     border-radius:20px;
     border: none;
-    margin-bottom: 6%;
+    margin-bottom: 5%;
   }
 
   .app_container button:hover{
@@ -76,4 +76,77 @@ body {
     text-decoration: none;
     color: white;
   }
+  @media screen  and (max-width:1450px) {
+    .app_container{
+      height:65vh;
+    width: 65vw;
+    }
+  }
   
+  @media screen and (max-width: 1250px) {
+    .app_container{
+      height:75vh;
+      width: 75vw;
+      }
+    .app_container h1{
+      font-size: 2.5rem;
+    }
+    #nameInput,#roomInput{
+      width: 40%;
+      font-size: 16px;
+    }
+    .app_container p{
+      font-size: 17px;
+      margin-bottom: 8%;
+    }
+    .app_container button{
+      font-size: 17px;
+      margin-bottom: 8%;
+    }
+  }
+
+  @media screen and (max-width: 980px) {
+    .app_container{
+      height:70vh;
+      width: 70vw;
+    }
+    .app_container h1{
+      font-size: 2rem;
+      margin-bottom: 5%;
+    }
+    .app_container p{
+      font-size: 15px;
+      margin-bottom: 10%;
+    }
+    #nameInput,#roomInput{
+      width: 55%;
+      font-size: 15px;
+    }
+    .app_container button{
+      font-size: 15px;
+      margin-bottom: 10%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .app_container{
+      height:75vh;
+      width: 75vw;
+    }
+    .app_container h1{
+      font-size: 1.5rem;
+      margin-bottom: 20%;
+    }
+    .app_container p{
+      font-size: 12px;
+      margin-bottom: 15%;
+    }
+    #nameInput,#roomInput{
+      width: 70%;
+      font-size: 12px;
+    }
+    .app_container button{
+      font-size: 12px;
+      margin-bottom: 22%;
+    }
+  }

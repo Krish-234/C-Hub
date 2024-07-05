@@ -36,7 +36,7 @@ const Message = () => {
 
   const sendMessage = () => {
     socket.emit('send', { message, room });
-    setMessages((prevMessages) => [...prevMessages, { message: `You: ${message}`, type: 'right' }]);
+    setMessages((prevMessages) => [...prevMessages, { message: `${message}`, type: 'right' }]);
     setMessage('');
   };
 
