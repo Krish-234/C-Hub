@@ -2,6 +2,25 @@ const io = require('socket.io');
 const cors = require('cors');
 const express = require('express');
 const app = express();
+const { MongoClient } = require("mongodb");
+
+const uri = "mongodb+srv://krishp2304:mongoChub@cluster0.6rgp1.mongodb.net/";
+const client = new MongoClient(uri);
+
+let database, messagesCollection;
+
+async function run() {
+    try {
+        await client.connect();
+        database = client.db('C-hub');
+        messagesCollection = database.collection('messages'); // Define the messages collection
+        console.log("Connected to MongoDB");
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error);
+    }
+}
+
+run().catch(console.dir);
 
 app.use(cors());
 
@@ -22,8 +41,24 @@ socketIo.on('connection', socket => {
         socket.to(room).emit('user-joined', name);
     });
 
-    socket.on('send', ({ message, room }) => {
-        socket.to(room).emit('receive', { message: message, name: users[socket.id].name });
+    socket.on('send', async ({ message, room }) => {
+        const sender = users[socket.id].name;
+        const messageData = {
+            name: sender,
+            room: room,
+            message: message,
+            timestamp: new Date() // Store the current timestamp
+        };
+
+        // Save the message to MongoDB
+        try {
+            await messagesCollection.insertOne(messageData);
+            console.log("Message saved to MongoDB:", messageData);
+        } catch (error) {
+            console.error("Error saving message to MongoDB:", error);
+        }
+
+        socket.to(room).emit('receive', { message: message, name: sender });
     });
 
     socket.on('disconnect', () => {
@@ -51,7 +86,6 @@ app.get('/', (req, res) => {
         </html>
     `);
 });
-
 
 server.listen(8000, () => {
     console.log('Server is running on 8000');
