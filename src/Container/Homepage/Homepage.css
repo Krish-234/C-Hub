@@ -1,0 +1,247 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: url('../../assets/bg3.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+  .app_home-container {
+    position: relative;
+    z-index: 1;
+    color: white; /* You can change the color to make it more readable against your background */
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 10px; /* Optional: rounded corners */  
+    height:60vh;
+    width: 60vw;
+  }
+
+  .app_home-container h1{
+    color:  rgb(120, 149, 236);
+    font-size: 3rem;
+    margin-bottom: 4%;
+    font-weight: 800;
+  }
+
+  .app_home-container p{
+    
+    font-size: 20px;
+    margin-bottom: 3%;
+    line-height: 30px;
+  }
+
+  #nameInput,#roomInput,#passwordInput,#confirmPasswordInput{
+    display: block;
+    margin: 1rem auto;
+    width: 30%;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    background-color: black;
+    outline: none;
+    font-size: 18px;
+    padding-left: 1rem;
+  }
+
+  #nameInput::placeholder,#roomInput::placeholder,#confirmPasswordInput::placeholder,#passwordInput::placeholder{
+   color: white;
+}
+
+  /* .app_home-container button{
+    margin: auto;
+    color: white;
+    padding: 0.8rem 1.8rem;
+    font-size: 18px;
+    background-color: #510DA0;
+    border-radius:20px;
+    border: none;
+    margin-bottom: 5%;
+  }
+
+  .app_home-container button:hover{
+    cursor: pointer;
+    transition: 0.3s ease;
+    background-color: black;
+  } */
+
+
+.login-buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 20px; /* Add some space between the buttons */
+    margin-bottom: 5%;
+}
+
+
+
+.login-buttons button {
+    color: white;
+    padding: 0.8rem 4rem; /* Added padding for better spacing */
+    font-size: 18px;
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border initially */
+    border-bottom: 2px solid grey; /* Default bottom border color */
+    border-radius: 0; /* No border radius */
+    display: block;
+    position: relative;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease; /* Transition for color and border color */
+    cursor: pointer; /* Pointer cursor for buttons */
+}
+
+/* Add a bottom border on hover */
+.login-buttons button::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* Position below the button */
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: transparent; /* Transparent background initially */
+    transform: scaleX(0); /* Start with no line */
+    transition: transform 0.3s ease; /* Smooth transition for the line */
+}
+
+/* Hover effect */
+.login-buttons button:hover {
+    color: white; /* Keep the text color white on hover */
+}
+
+.login-buttons button:hover::after {
+    transform: scaleX(1); /* Expand the line on hover */
+    background-color: #510DA0; /* Line color on hover */
+}
+
+/* Active state for the button */
+.login-buttons button[data-state="active"] {
+    color: #f0f0f0; /* Light text color for the active button */
+    border-bottom-color: #510DA0; /* Change bottom border color for the active button */
+}
+
+/* Hover effect for the active button should still show the underline */
+.login-buttons button[data-state="active"]:hover::after {
+    transform: scaleX(1); /* Expand the line on hover */
+    background-color: #510DA0; /* Line color on hover */
+    margin-bottom: 0;
+}
+
+/* Keep the active button's color even when clicked */
+.login-buttons button:active[data-state="active"] {
+    color: #f0f0f0; /* Maintain the color of the active button on click */
+}
+
+
+#submitButton{
+    margin: auto;
+    color: white;
+    padding: 0.6rem 5rem;
+    font-size: 18px;
+    background-color: #510DA0;
+    border-radius:20px;
+    border: none;
+    /* margin-bottom: 5%; */
+}
+
+#submitButton:hover{
+    cursor: pointer;
+    transition: 0.3s ease;
+    background-color: white;
+  }
+
+  .app_home-container p:last-child,a:last-child{
+    color: rgb(120, 193, 236);
+  }
+
+
+
+  a{
+    text-decoration: none;
+    color: white;
+  }
+  @media screen  and (max-width:1450px) {
+    .app_home-container{
+        height:65vh;
+        width: 65vw;
+    }
+  }
+  
+  @media screen and (max-width: 1250px) {
+    .app_home-container{
+      height:75vh;
+      width: 75vw;
+      }
+    .app_home-container h1{
+      font-size: 2.5rem;
+    }
+    #nameInput,#roomInput,#passwordInput,#confirmPasswordInput{
+      width: 40%;
+      font-size: 16px;
+    }
+    .app_home-container p{
+      font-size: 17px;
+      margin-bottom: 10%;
+    }
+    .app_home-container button{
+      font-size: 17px;
+      margin-bottom: 10%;
+    }
+  }
+
+  @media screen and (max-width: 980px) {
+    .app_home-container{
+      height:70vh;
+      width: 70vw;
+    }
+    .app_home-container h1{
+      font-size: 2rem;
+      margin-bottom: 10%;
+    }
+    .app_home-container p{
+      font-size: 15px;
+      line-height: 25px;
+      margin-bottom: 14%;
+    }
+    #nameInput,#roomInput,#passwordInput,#confirmPasswordInput{
+      width: 55%;
+      font-size: 15px;
+    }
+    .app_home-container button{
+      font-size: 15px;
+      margin-bottom: 14%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .app_home-container{
+      height:75vh;
+      width: 75vw;
+    }
+    .app_home-container h1{
+      font-size: 1.5rem;
+      margin-bottom: 20%;
+    }
+    .app_home-container p{
+      font-size: 12px;
+      line-height: 20px;
+      margin: 0 10px;
+      margin-bottom: 20%;
+    }
+    #nameInput,#roomInput,#passwordInput,#confirmPasswordInput{
+      width: 70%;
+      font-size: 12px;
+    }
+    .app_home-container button{
+      font-size: 12px;
+      margin-bottom: 22%;
+    }
+  }
+  

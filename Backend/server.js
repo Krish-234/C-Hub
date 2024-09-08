@@ -1,92 +1,131 @@
-const io = require('socket.io');
-const cors = require('cors');
-const express = require('express');
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import mongoose from "mongoose";
+import authRoutes from "./routes/AuthRoutes.js"; // You don't need `default` for a default export in ES modules
+
+dotenv.config();
+
 const app = express();
-const { MongoClient } = require("mongodb");
+const port = process.env.PORT || 3001;
+const databaseURL = process.env.DATABASE_URL;
 
-const uri = "mongodb+srv://krishp2304:mongoChub@cluster0.6rgp1.mongodb.net/";
-const client = new MongoClient(uri);
+app.use(cors({
+    origin: "*", // Allow all origins
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    credentials: true,
+}));
 
-let database, messagesCollection;
+app.use(cookieParser());
+app.use(express.json());
 
-async function run() {
-    try {
-        await client.connect();
-        database = client.db('C-hub');
-        messagesCollection = database.collection('messages'); // Define the messages collection
-        console.log("Connected to MongoDB");
-    } catch (error) {
-        console.error("Error connecting to MongoDB:", error);
-    }
-}
+app.use("/api/auth", authRoutes);
 
-run().catch(console.dir);
-
-app.use(cors());
-
-const server = require('http').createServer(app);
-const socketIo = require('socket.io')(server, {
-    cors: {
-        origin: '*', // Allow all origins
-        methods: ['GET', 'POST']
-    }
+const server = app.listen(port, () => {
+    console.log(`Server is running at port: ${port}`);
 });
 
-const users = {};
+mongoose
+    .connect(databaseURL)
+    .then(() => {
+        console.log("DB connection successful");
+    })
+    .catch((err) => console.log(err.message));
 
-socketIo.on('connection', socket => {
-    socket.on('join-room', ({ name, room }) => {
-        socket.join(room);
-        users[socket.id] = { name, room };
-        socket.to(room).emit('user-joined', name);
-    });
 
-    socket.on('send', async ({ message, room }) => {
-        const sender = users[socket.id].name;
-        const messageData = {
-            name: sender,
-            room: room,
-            message: message,
-            timestamp: new Date() // Store the current timestamp
-        };
 
-        // Save the message to MongoDB
-        try {
-            await messagesCollection.insertOne(messageData);
-            console.log("Message saved to MongoDB:", messageData);
-        } catch (error) {
-            console.error("Error saving message to MongoDB:", error);
-        }
 
-        socket.to(room).emit('receive', { message: message, name: sender });
-    });
 
-    socket.on('disconnect', () => {
-        const user = users[socket.id];
-        if (user) {
-            const { name, room } = user;
-            socket.to(room).emit('left', name);
-            delete users[socket.id];
-        }
-    });
-});
+// const io = require('socket.io');
+// const cors = require('cors');
+// const express = require('express');
+// const app = express();
+// const { MongoClient } = require("mongodb");
 
-app.get('/', (req, res) => {
-    res.send(`
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Chat Application</title>
-        </head>
-        <body>
-            <h1>Hello</h1>
-        </body>
-        </html>
-    `);
-});
+// const uri = "mongodb+srv://krishp2304:mongoChub@cluster0.6rgp1.mongodb.net/";
+// const client = new MongoClient(uri);
 
-server.listen(8000, () => {
-    console.log('Server is running on 8000');
-});
+// let database, messagesCollection;
+
+// async function run() {
+//     try {
+//         await client.connect();
+//         database = client.db('C-hub');
+//         messagesCollection = database.collection('messages'); // Define the messages collection
+//         console.log("Connected to MongoDB");
+//     } catch (error) {
+//         console.error("Error connecting to MongoDB:", error);
+//     }
+// }
+
+// run().catch(console.dir);
+
+// app.use(cors());
+
+// const server = require('http').createServer(app);
+// const socketIo = require('socket.io')(server, {
+//     cors: {
+//         origin: '*', // Allow all origins
+//         methods: ['GET', 'POST']
+//     }
+// });
+
+// const users = {};
+
+// socketIo.on('connection', socket => {
+//     socket.on('join-room', ({ name, room }) => {
+//         socket.join(room);
+//         users[socket.id] = { name, room };
+//         socket.to(room).emit('user-joined', name);
+//     });
+
+//     socket.on('send', async ({ message, room }) => {
+//         const sender = users[socket.id].name;
+//         const messageData = {
+//             name: sender,
+//             room: room,
+//             message: message,
+//             timestamp: new Date() // Store the current timestamp
+//         };
+
+//         // Save the message to MongoDB
+//         try {
+//             await messagesCollection.insertOne(messageData);
+//             console.log("Message saved to MongoDB:", messageData);
+//         } catch (error) {
+//             console.error("Error saving message to MongoDB:", error);
+//         }
+
+//         socket.to(room).emit('receive', { message: message, name: sender });
+//     });
+
+//     socket.on('disconnect', () => {
+//         const user = users[socket.id];
+//         if (user) {
+//             const { name, room } = user;
+//             socket.to(room).emit('left', name);
+//             delete users[socket.id];
+//         }
+//     });
+// });
+
+// app.get('/', (req, res) => {
+//     res.send(`
+//         <!DOCTYPE html>
+//         <html lang="en">
+//         <head>
+//             <meta charset="UTF-8">
+//             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//             <title>Chat Application</title>
+//         </head>
+//         <body>
+//             <h1>Hello</h1>
+//         </body>
+//         </html>
+//     `);
+// });
+
+// server.listen(8000, () => {
+//     console.log('Server is running on 8000');
+// });
