@@ -1,15 +1,16 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../Components/UserContext.jsx";
+import React, { useState } from "react";
+import { apiClient } from "../../lib/api-client.js";
 import "./Homepage.css";
+import { LOGIN_ROUTE, SIGNUP_ROUTE } from "../../utils/constants.js";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
+  const navigate = useNavigate();
   const [login, setLogin] = useState(false); // Track login mode, initially false
   const [showForm, setShowForm] = useState(false); // Form is hidden at the start
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
   const [activeButton, setActiveButton] = useState(null); // Track which button is active (login/signup)
 
   const handleLoginClick = () => {
@@ -24,30 +25,65 @@ const Homepage = () => {
     setActiveButton("signup"); // Set signup button as active
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // Login validation logic
+  const validateLogin = () => {
     if (!email || !password) {
       alert("Please enter your email and password.");
-      return;
+      return false;
     }
-    console.log("Logging in with", { email, password });
-    // Add your login API call or validation here
+    return true;
   };
 
-  const handleSignup = (e) => {
-    e.preventDefault();
-    // Signup validation logic
+  const validateSignup = () => {
     if (!email || !password || !confirmedPassword) {
       alert("Please fill in all fields.");
-      return;
+      return false;
     }
     if (password !== confirmedPassword) {
       alert("Passwords do not match.");
-      return;
+      return false;
     }
-    console.log("Signing up with", { email, password });
-    // Add your signup API call or validation here
+    return true;
+  };
+
+  // Async function for login API call
+  const handleLogin = async () => {
+    const response = await apiClient.post(
+      LOGIN_ROUTE,
+      { email, password },
+      { withCredentials: true }
+    );
+    if(response.data.user.id){
+      if(response.data.user.profileSetup) navigate("/chat");
+      else navigate("/profile");
+    }
+    console.log({response});
+  };
+
+  // Async function for signup API call
+  const handleSignup = async () => {
+    const response = await apiClient.post(
+      SIGNUP_ROUTE,
+      { email, password },
+      { withCredentials: true }
+    );
+    if(response.status === 201){
+      navigate("/profile");
+    }
+    console.log({response});
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    if (activeButton === "login") {
+      if (validateLogin()) {
+        await handleLogin(); // Call async login function
+      }
+    } else if (activeButton === "signup") {
+      if (validateSignup()) {
+        await handleSignup(); // Call async signup function
+      }
+    }
   };
 
   return (
@@ -70,9 +106,7 @@ const Homepage = () => {
       </div>
       <div>
         {showForm && (
-          <form
-            onSubmit={activeButton === "login" ? handleLogin : handleSignup}
-          >
+          <form onSubmit={handleFormSubmit}>
             <input
               type="email"
               placeholder="Enter Your Email..."
