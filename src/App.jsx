@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { Homepage,Message,Header } from './component';
+import { Homepage } from './component';
 import { UserProvider } from './Components/UserContext';
 
 function App() {
@@ -10,10 +10,8 @@ function App() {
     <UserProvider>
     <Router>
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="*" element={<Navigate to="/" />} />
-        <Route path="/guest" element={<Header />} />
-        <Route path="/message" element={<Message />} />
+        <Route path="/auth" element={<Homepage />} />
+        <Route path="*" element={<Navigate to="/auth" />} />
       </Routes> 
     </Router>
     </UserProvider>

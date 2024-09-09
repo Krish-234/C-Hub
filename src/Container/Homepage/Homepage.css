@@ -55,6 +55,7 @@ body {
 
   #nameInput::placeholder,#roomInput::placeholder,#confirmPasswordInput::placeholder,#passwordInput::placeholder{
    color: white;
+   
 }
 
   /* .app_home-container button{
@@ -154,7 +155,7 @@ body {
 #submitButton:hover{
     cursor: pointer;
     transition: 0.3s ease;
-    background-color: white;
+    background-color: black;
   }
 
   .app_home-container p:last-child,a:last-child{

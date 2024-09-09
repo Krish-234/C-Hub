@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     },
     profileSetup:{
         type: Boolean,
-        deafult: false
+        default: false
     }
 });
 
