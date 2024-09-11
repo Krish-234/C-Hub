@@ -1,0 +1,14 @@
+.app_chat-container{
+    position: relative;
+    z-index: 1;
+    color: white; /* You can change the color to make it more readable against your background */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blur effect */
+    border-radius: 10px; /* Optional: rounded corners */  
+    height:70vh;
+    width: 70vw;
+    margin-bottom: 23px;
+    overflow-y: auto;
+    overflow-x: none;
+}

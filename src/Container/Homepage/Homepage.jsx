@@ -3,15 +3,17 @@ import { apiClient } from "../../lib/api-client.js";
 import "./Homepage.css";
 import { LOGIN_ROUTE, SIGNUP_ROUTE } from "../../utils/constants.js";
 import { useNavigate } from "react-router-dom";
+import { useAppStore } from "../../store/index.js";
 
 const Homepage = () => {
   const navigate = useNavigate();
-  const [login, setLogin] = useState(false); // Track login mode, initially false
-  const [showForm, setShowForm] = useState(false); // Form is hidden at the start
+  const { setUserInfo } = useAppStore();
+  const [login, setLogin] = useState(true); // Track login mode, initially false
+  const [showForm, setShowForm] = useState(true); // Form is hidden at the start
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
-  const [activeButton, setActiveButton] = useState(null); // Track which button is active (login/signup)
+  const [activeButton, setActiveButton] = useState("login"); // Track which button is active (login/signup)
 
   const handleLoginClick = () => {
     setShowForm(true); // Show form when login is clicked
@@ -23,14 +25,6 @@ const Homepage = () => {
     setShowForm(true); // Show form when signup is clicked
     setLogin(false);
     setActiveButton("signup"); // Set signup button as active
-  };
-
-  const validateLogin = () => {
-    if (!email || !password) {
-      alert("Please enter your email and password.");
-      return false;
-    }
-    return true;
   };
 
   const validateSignup = () => {
@@ -45,6 +39,14 @@ const Homepage = () => {
     return true;
   };
 
+  const validateLogin = () => {
+    if (!email || !password) {
+      alert("Please enter your email and password.");
+      return false;
+    }
+    return true;
+  };
+
   // Async function for login API call
   const handleLogin = async () => {
     const response = await apiClient.post(
@@ -52,11 +54,12 @@ const Homepage = () => {
       { email, password },
       { withCredentials: true }
     );
-    if(response.data.user.id){
-      if(response.data.user.profileSetup) navigate("/chat");
+    if (response.data.user.id) {
+      setUserInfo(response.data.user);
+      if (response.data.user.profileSetup) navigate("/chat");
       else navigate("/profile");
     }
-    console.log({response});
+    console.log({ response });
   };
 
   // Async function for signup API call
@@ -66,10 +69,11 @@ const Homepage = () => {
       { email, password },
       { withCredentials: true }
     );
-    if(response.status === 201){
+    if (response.status === 201) {
+      setUserInfo(response.data.user);
       navigate("/profile");
     }
-    console.log({response});
+    console.log({ response });
   };
 
   const handleFormSubmit = async (e) => {
