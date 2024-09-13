@@ -98,6 +98,10 @@
     cursor: pointer;
 }
 
+.hidden{
+    display: none;
+}
+
 /* Input fields styling */
 .profile-inputs {
     display: flex;
