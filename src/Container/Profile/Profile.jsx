@@ -118,94 +118,96 @@ const Profile = () => {
   const colorOptions = ["#FF6347", "#4682B4", "#32CD32", "#FFD700"]; // Define 4 semi-transparent colors
 
   return (
-    <div className="app_profile-container">
-      <div className="profile-inner-container">
-        <div onClick={handleNavigate}>
-          <IoArrowBack className="back-arrow" />
-        </div>
+    <div className="app_profile-background">
+      <div className="app_profile-container">
+        <div className="profile-inner-container">
+          <div onClick={handleNavigate}>
+            <IoArrowBack className="back-arrow" />
+          </div>
 
-        <div className="profile-content">
-          <div
-            className="avatar-wrapper"
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-          >
-            <div className="avatar" style={{ backgroundColor: avatarColor }}>
-              {image ? (
-                <img src={image} alt="profile" className="avatar-image" />
-              ) : (
-                <div className="avatar-placeholder">
-                  {firstName ? firstName.charAt(0) : email.charAt(0)}
-                </div>
-              )}
-              {/* Conditionally render FaTrash if image exists, otherwise render FaPlus */}
-              {hovered && (
-                <div
-                  className="icon-wrapper"
-                  onClick={image ? handleDeleteImage : handleFileInputClick}
-                >
-                  {image ? (
-                    <FaTrash
-                      className="avatar-icon"
-                      onClick={() => setImage(null)}
+          <div className="profile-content">
+            <div
+              className="avatar-wrapper"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+            >
+              <div className="avatar" style={{ backgroundColor: avatarColor }}>
+                {image ? (
+                  <img src={image} alt="profile" className="avatar-image" />
+                ) : (
+                  <div className="avatar-placeholder">
+                    {firstName ? firstName.charAt(0) : email.charAt(0)}
+                  </div>
+                )}
+                {/* Conditionally render FaTrash if image exists, otherwise render FaPlus */}
+                {hovered && (
+                  <div
+                    className="icon-wrapper"
+                    onClick={image ? handleDeleteImage : handleFileInputClick}
+                  >
+                    {image ? (
+                      <FaTrash
+                        className="avatar-icon"
+                        onClick={() => setImage(null)}
+                      />
+                    ) : (
+                      <FaPlus className="avatar-icon" />
+                    )}
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      className="hidden"
+                      onChange={handleImageChange}
+                      name="profile-image"
+                      accept=".png, .jpg, .jpeg, .svg, .webp"
                     />
-                  ) : (
-                    <FaPlus className="avatar-icon" />
-                  )}
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    className="hidden"
-                    onChange={handleImageChange}
-                    name="profile-image"
-                    accept=".png, .jpg, .jpeg, .svg, .webp"
-                  />
-                </div>
-              )}
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
 
-          {/* Input fields for email, first name, and last name */}
-          <div className="profile-inputs">
-            <input
-              type="text"
-              disabled
-              value={email}
-              placeholder="Email"
-              className="input-field"
-            />
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              placeholder="First Name"
-              className="input-field"
-            />
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              placeholder="Last Name"
-              className="input-field"
-            />
+            {/* Input fields for email, first name, and last name */}
+            <div className="profile-inputs">
+              <input
+                type="text"
+                disabled
+                value={email}
+                placeholder="Email"
+                className="input-field"
+              />
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="First Name"
+                className="input-field"
+              />
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Last Name"
+                className="input-field"
+              />
 
-            {/* Color selection options */}
-            <div className="color-options">
-              {colorOptions.map((color, index) => (
-                <div
-                  key={index}
-                  className="color-box"
-                  style={{ backgroundColor: color }}
-                  onClick={() => setAvatarColor(color)}
-                ></div>
-              ))}
+              {/* Color selection options */}
+              <div className="color-options">
+                {colorOptions.map((color, index) => (
+                  <div
+                    key={index}
+                    className="color-box"
+                    style={{ backgroundColor: color }}
+                    onClick={() => setAvatarColor(color)}
+                  ></div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
+        <button onClick={saveChanges} className="save-button">
+          Save Changes
+        </button>
       </div>
-      <button onClick={saveChanges} className="save-button">
-        Save Changes
-      </button>
     </div>
   );
 };

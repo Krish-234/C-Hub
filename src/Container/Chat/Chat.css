@@ -1,14 +1,54 @@
+
+.app_chat-background{
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: url('../../assets/bg3.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
 .app_chat-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app_chat-contacts{
+    display: flex;
     position: relative;
     z-index: 1;
-    color: white; /* You can change the color to make it more readable against your background */
+    color: white; 
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-    backdrop-filter: blur(10px); /* Blur effect */
-    border-radius: 10px; /* Optional: rounded corners */  
-    height:70vh;
-    width: 70vw;
-    margin-bottom: 23px;
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); 
+    border-radius: 10px;  
+    height:85vh;
+    width: 17vw;
     overflow-y: auto;
     overflow-x: none;
+    margin-top: 2rem;
+    margin-left: 8rem;
 }
+
+.app_chat-message{
+    position: relative;
+    z-index: 1;
+    color: white; 
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); 
+    border-radius: 10px;  
+    height:85vh;
+    width: 63vw;
+    overflow-y: auto;
+    overflow-x: none;
+    margin-top: 2rem;
+    margin-right: 8rem;
+}
+
+.app_chat-message::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;  /* For horizontal scrollbar */
+  }

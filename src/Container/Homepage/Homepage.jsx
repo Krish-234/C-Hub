@@ -91,6 +91,7 @@ const Homepage = () => {
   };
 
   return (
+    <div className="app_home-background">
     <div className="app_home-container">
       <h1>Welcome to C-hub!</h1>
       <p>Fill in the details and Get started !</p>
@@ -98,13 +99,13 @@ const Homepage = () => {
         <button
           data-state={activeButton === "login" ? "active" : ""}
           onClick={handleLoginClick}
-        >
+          >
           login
         </button>
         <button
           data-state={activeButton === "signup" ? "active" : ""}
           onClick={handleSignupClick}
-        >
+          >
           Sign Up
         </button>
       </div>
@@ -117,23 +118,23 @@ const Homepage = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               id="nameInput"
-            />
+              />
             <input
               type="password"
               placeholder="Enter Password..."
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               id="passwordInput"
-            />
+              />
 
             {/* Show Confirm Password only if "signup" is active */}
             {activeButton === "signup" && (
               <input
-                type="password"
-                placeholder="Confirm Password..."
-                value={confirmedPassword}
-                onChange={(e) => setConfirmedPassword(e.target.value)}
-                id="confirmPasswordInput"
+              type="password"
+              placeholder="Confirm Password..."
+              value={confirmedPassword}
+              onChange={(e) => setConfirmedPassword(e.target.value)}
+              id="confirmPasswordInput"
               />
             )}
 
@@ -147,6 +148,7 @@ const Homepage = () => {
         Created by <a href="https://github.com/Krish-234/">@Krish-234</a>
       </p>
     </div>
+  </div>
   );
 };
 

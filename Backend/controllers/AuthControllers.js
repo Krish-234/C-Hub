@@ -49,7 +49,7 @@ export const login = async (req, res, next) => {
     if (!user) {
       return res.status(404).send("User with the given email not found.");
     }
-    const auth = await compare(password, user.password);
+    const auth = await compare(password,user.password);
     if (!auth) {
       return res.status(400).send("Password is incorrect.");
     }
@@ -79,7 +79,7 @@ export const login = async (req, res, next) => {
 
 export const getUserInfo = async (req, res, next) => {
   try {
-    //    console.log(req.userId);
+       
     const userData = await User.findById(req.userId);
     if (!userData) {
       return res.status(404).send("User with the given id not found.");
