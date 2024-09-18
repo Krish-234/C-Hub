@@ -32,21 +32,7 @@
     margin-left: 8rem;
 }
 
-.app_chat-message{
-    position: relative;
-    z-index: 1;
-    color: white; 
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.1); 
-    backdrop-filter: blur(10px); 
-    border-radius: 10px;  
-    height:85vh;
-    width: 63vw;
-    overflow-y: auto;
-    overflow-x: none;
-    margin-top: 2rem;
-    margin-right: 8rem;
-}
+
 
 .app_chat-message::-webkit-scrollbar {
     width: 0px;

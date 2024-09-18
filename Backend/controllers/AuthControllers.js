@@ -49,7 +49,7 @@ export const login = async (req, res, next) => {
     if (!user) {
       return res.status(404).send("User with the given email not found.");
     }
-    const auth = await compare(password,user.password);
+    const auth = await compare(password, user.password);
     if (!auth) {
       return res.status(400).send("Password is incorrect.");
     }
@@ -79,7 +79,6 @@ export const login = async (req, res, next) => {
 
 export const getUserInfo = async (req, res, next) => {
   try {
-       
     const userData = await User.findById(req.userId);
     if (!userData) {
       return res.status(404).send("User with the given id not found.");
@@ -164,23 +163,33 @@ export const addProfileImage = async (req, res, next) => {
   }
 };
 
-export const removeProfileImage = async (req,res,next) => {
+export const removeProfileImage = async (req, res, next) => {
   try {
-    const {userId} = req;
+    const { userId } = req;
     const user = await User.findById(userId);
 
-    if(!user){
+    if (!user) {
       return res.status(404).send("User not found");
     }
 
-    if(user.image){
+    if (user.image) {
       unlinkSync(user.image);
     }
-    
+
     user.image = null;
     await user.save();
 
     return res.status(200).send("Profile image removed successfully");
+  } catch (err) {
+    console.log({ err });
+    return res.status(500).send("Internal Server Error");
+  }
+};
+
+export const logout = async (req, res, next) => {
+  try {
+    res.cookie("jwt", { maxAge: 1, secure: true, sameSite: "none" });
+    return res.status(200).send("Logout Sucessful");
   } catch (err) {
     console.log({ err });
     return res.status(500).send("Internal Server Error");

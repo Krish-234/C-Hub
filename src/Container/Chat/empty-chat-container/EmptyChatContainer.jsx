@@ -14,6 +14,7 @@ const EmptyChatContainer = () => {
   };
 
   return (
+    <div className="empty-chat-background">
     <div className="empty-chat-container">
       <div className="empty-chat-animation">
         <Lottie options={defaultOptions} height={150} width={150} />
@@ -22,6 +23,7 @@ const EmptyChatContainer = () => {
         <h2>Welcome to the C-hub!</h2>
         <p>Select a contact to start messaging or create a new conversation.</p>
       </div>
+    </div>
     </div>
   );  
 };

@@ -1,0 +1,67 @@
+.message-bar {
+  max-width: 100vw;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.message-input {
+  flex: 1;
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-right: 5px;
+  outline: none;
+  font-size: 17px;
+  padding-left: 1rem;
+}
+
+.message-input::placeholder {
+  color: white;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  height: 40px;
+  color: white;
+  margin-right: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+.icon-btn:hover {
+  color: #6a0fde;
+}
+
+.emoji-picker-window{
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 50px;
+}
+
+.send-btn {
+  border: none;
+  height: 40px;
+  border-radius: 6px;
+  background-color: #7f13fa;
+  color: white;
+  padding: 0 1rem;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.send-btn:hover {
+  background-color: #6a0fde;
+}
+
+.icon {
+  font-size: 1.5rem;
+}

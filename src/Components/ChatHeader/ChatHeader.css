@@ -1,29 +1,33 @@
-/* Styles for the header container */
-.chat_container-background{
-    
-    overflow-y: auto;
-    overflow-x: none;
-    margin-right: 8rem;
+.chat_header-background{
+    position: relative;
+    z-index: 1;
+    color: white; 
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); 
+    border-radius: 10px;  
+    height: 3vh;
+    width: 63vw;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
 }
-.chat_container-header {
-    height: 10vh;
-    border-bottom: 2px solid #2f303b;
+
+/* Styles for the header container */
+.chat_header-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 /* Styles for the left content container */
-.chat_container-left-content {
+.chat_header-left-content {
     display: flex;
     gap: 5px;
     align-items: center;
 }
 
 /* Styles for the inner left content */
-.chat_container-inner-left-content {
+.chat_header-inner-left-content {
     display: flex;
     gap: 3px;
     align-items: center;
@@ -31,7 +35,7 @@
 }
 
 /* Styles for the right content container */
-.chat_container-right-content {
+.chat_header-right-content {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -39,7 +43,7 @@
 }
 
 /* Styles for the button */
-.chat_container-close-button {
+.chat_header-close-button {
     color: #9ca3af; /* Neutral 500 */
     border: none;
     outline: none;
@@ -49,7 +53,7 @@
 }
 
 /* Optional: add focus styles if needed */
-.chat_container-close-button:focus {
+.chat_header-close-button:focus {
     border: none;
     outline: none;
 }

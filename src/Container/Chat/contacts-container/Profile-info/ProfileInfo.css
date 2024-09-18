@@ -1,0 +1,106 @@
+.user_profile-info{
+    position: absolute;
+    bottom: 0;
+    height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100%;
+    background-color: hsl(200, 18%, 12%);
+    left: 0;
+    box-sizing: border-box; 
+    gap: 15px;
+}
+
+.user_profile-avatar {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.user_profile-avatar-placeholder {
+    text-transform: uppercase;
+    height: 45px;
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    border: 1px solid grey;
+    border-radius: 50%;
+    position: relative;
+}
+.user_profile-name{
+    flex: 1;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.user_profile-edit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    width: 35px;
+}
+
+.user_profile-icon{
+    font-size: 1.4rem;
+    color: #7f13fa;
+    position: relative;
+}
+.user_profile-icon2{
+    font-size: 1.4rem;
+    color: #e95255;
+    position: relative;
+
+}
+
+.user_profile-edit:hover{
+    border-radius: 35px;
+    background-color: rgb(54, 78, 78);
+    cursor: pointer; 
+}
+
+.tooltip {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 12px;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Adjust this to position above the icon */
+    left: 50%;
+    margin-left: 80px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Position the arrow */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  }
+  
+  .user_profile-edit:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+

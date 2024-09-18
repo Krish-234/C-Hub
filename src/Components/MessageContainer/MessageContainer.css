@@ -1,0 +1,12 @@
+.message_container-background{
+    position: relative;
+    z-index: 1;
+    color: white; 
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); 
+    border-radius: 10px;  
+    height:70vh;
+    width: 63vw;
+    margin-bottom: 1rem;
+}

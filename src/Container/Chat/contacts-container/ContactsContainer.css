@@ -1,0 +1,28 @@
+.contacts-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.logo {
+    margin-bottom: 3rem; 
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+}
+
+.logo img {
+    max-width: 50%; /* Ensure image doesn't overflow its container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px;
+}
+
+.custom-text {
+    font-size: 14px; /* Adjust font size as needed */
+    color: #878484; /* Text color */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 10px 0; /* Space above and below text */
+    padding: 8px;
+}
+
