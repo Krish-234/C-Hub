@@ -27,7 +27,7 @@ const Chat = () => {
         </div>
         <div className="app_chat-message">
         {/* <EmptyChatContainer /> */}
-        <ChatContainer />
+        {/* <ChatContainer /> */}
         </div>
       </div>
     </div>

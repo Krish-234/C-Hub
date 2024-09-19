@@ -23,6 +23,14 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin: 10px 0; /* Space above and below text */
-    padding: 8px;
+    padding: 4px 8px;
 }
+
+.contacts_dm{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 
