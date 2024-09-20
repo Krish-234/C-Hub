@@ -17,7 +17,7 @@ const EmptyChatContainer = () => {
     <div className="empty-chat-background">
     <div className="empty-chat-container">
       <div className="empty-chat-animation">
-        <Lottie options={defaultOptions} height={150} width={150} />
+        {/* <Lottie options={defaultOptions} height={150} width={150} /> */}
       </div>
       <div className="empty-chat-message">
         <h2>Welcome to the C-hub!</h2>

@@ -7,8 +7,10 @@ import Lottie from "react-lottie";
 import { apiClient } from "../../lib/api-client";
 import { SEARCH_CONTACT_ROUTES } from "../../utils/constants";
 import { HOST } from "../../utils/constants";
+import { useAppStore } from "../../store";
 
 const NewDM = () => {
+  const {setSelectedChatType,setSelectedChatData} = useAppStore();
   const [openNewContactModal, setOpenNewContactModal] = useState(false);
   const [searchedContacts, setSearchedContacts] = useState([]);
 
@@ -37,13 +39,19 @@ const NewDM = () => {
         if (res.status === 200 && res.data.contacts) {
           setSearchedContacts(res.data.contacts);
         }
-        console.log(res.data.contacts);
       } else {
         setSearchedContacts([]);
       }
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const selectNewContact = (contact) => {
+    setOpenNewContactModal(false);
+    setSelectedChatType("contact");
+    setSelectedChatData(contact);
+    setSearchedContacts([]);
   };
 
   return (
@@ -72,7 +80,7 @@ const NewDM = () => {
             <div className="contacts-list">
               {searchedContacts.length > 0 ? (
                 searchedContacts.map((contact) => (
-                  <div key={contact._id} className="contact-item">
+                  <div key={contact._id} className="contact-item" onClick={() => selectNewContact(contact)}>
                     <div
                       className="user_prof-dm-avatar"
                       style={{ backgroundColor: contact.color }}
@@ -95,7 +103,7 @@ const NewDM = () => {
                       {contact.firstName && contact.lastName
                         ? `${contact.firstName} ${contact.lastName}`
                         : `${contact.email}`}
-                        <span>{contact.email}</span>
+                      <span>{contact.email}</span>
                     </div>
                   </div>
                 ))

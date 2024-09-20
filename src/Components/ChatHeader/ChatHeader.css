@@ -2,7 +2,7 @@
     position: relative;
     z-index: 1;
     color: white; 
-    padding: 20px;
+    padding: 20px 20px;
     background: rgba(255, 255, 255, 0.1); 
     backdrop-filter: blur(10px); 
     border-radius: 10px;  
@@ -24,14 +24,48 @@
     display: flex;
     gap: 5px;
     align-items: center;
+    justify-content: space-between;
+    padding: 0px 40px;
 }
 
 /* Styles for the inner left content */
 .chat_header-inner-left-content {
     display: flex;
-    gap: 3px;
+    gap: 30px;
     align-items: center;
     justify-content: center;
+
+}
+
+.chat_header-dm-avatar {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.chat_header-dm-avatar-placeholder {
+    text-transform: uppercase;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    border: 1px solid grey;
+    border-radius: 50%;
+    position: relative;
+}
+.chat_header-dm-name{
+    text-align: center;
+    display: flex;
+    flex: 1;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 /* Styles for the right content container */
@@ -50,6 +84,7 @@
     background: none;
     color: white; /* Text color */
     transition: all 0.3s duration; /* Transition for hover and focus effects */
+    cursor: pointer;
 }
 
 /* Optional: add focus styles if needed */

@@ -9,7 +9,7 @@ import {
 } from "./index.js";
 
 const Chat = () => {
-  const { userInfo } = useAppStore();
+  const { userInfo, selectedChatType } = useAppStore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,11 +23,16 @@ const Chat = () => {
     <div className="app_chat-background">
       <div className="app_chat-container">
         <div className="app_chat-contacts">
-        <ContactsContainer />
+          <ContactsContainer />
         </div>
         <div className="app_chat-message">
-        {/* <EmptyChatContainer /> */}
-        {/* <ChatContainer /> */}
+          {selectedChatType === undefined ? (
+            <EmptyChatContainer />
+          ) : (
+            <ChatContainer />
+          )}
+          {/* <EmptyChatContainer /> */}
+          {/* <ChatContainer /> */}
         </div>
       </div>
     </div>
