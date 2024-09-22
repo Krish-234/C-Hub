@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import authRoutes from "./routes/AuthRoutes.js"; // You don't need `default` for a default export in ES modules
 import contactsRoutes from "./routes/ContactsRoutes.js";
+import setupSocket from "./socket.js";
 
 dotenv.config();
 
@@ -29,6 +30,9 @@ app.use("/api/contacts", contactsRoutes);
 const server = app.listen(port, () => {
     console.log(`Server is running at port: ${port}`);
 });
+
+
+setupSocket(server);
 
 mongoose
     .connect(databaseURL)

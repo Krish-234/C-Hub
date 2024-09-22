@@ -4,9 +4,13 @@ import { RiEmojiStickerLine } from "react-icons/ri";
 import { IoSend } from "react-icons/io5";
 import "./MessageBar.css";
 import EmojiPicker from "emoji-picker-react";
+import { useAppStore } from "../../store";
+import { useSocket } from "../../context/SocketContext";
 
 const MessageBar = () => {
   const emojiRef = useRef();
+  const socket = useSocket();
+  const {selectedChatType,selectedChatData,userInfo} = useAppStore();
   const [message, setMessage] = useState("");
   const [emojiPickerOpen, setEmojiPickerOpen] = useState(false);
 
@@ -25,7 +29,17 @@ const MessageBar = () => {
     setMessage((msg) => msg + emoji.emoji);
   };
 
-  const handleSendMessage = async () => {};
+  const handleSendMessage = async () => {
+    if(selectedChatType === "contact"){
+      socket.emit("sendMessage",{
+        sender: userInfo.id,
+        content: message,
+        recipient: selectedChatData._id,
+        messageType: "text",
+        fileUrl: undefined
+      });
+    }
+  };
 
   return (
     <div className="message-bar">
@@ -51,7 +65,7 @@ const MessageBar = () => {
         />
       </div>
       <button className="send-btn">
-        <IoSend className="icon" />
+        <IoSend className="icon" onClick={handleSendMessage} />
       </button>
     </div>
   );
