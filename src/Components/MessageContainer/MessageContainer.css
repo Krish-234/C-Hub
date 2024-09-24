@@ -1,12 +1,84 @@
-.message_container-background{
+.message_container-background {
     position: relative;
     z-index: 1;
-    color: white; 
+    color: white;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1); 
-    backdrop-filter: blur(10px); 
-    border-radius: 10px;  
-    height:70vh;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    height: 70vh;
     width: 63vw;
     margin-bottom: 1rem;
-}
+    overflow-y: auto;
+    overflow-x: none;
+  }
+
+  .message_container-background::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;  /* For horizontal scrollbar */
+  }
+  
+  .app_message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .app_message-date {
+    display: inline;
+    margin: 5px;
+    padding: 7px;
+    font-size: 14px;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgb(83, 82, 82);
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 60%;
+  }
+  
+  .text-left,
+  .text-right {
+    display: flex; /* Change to flex */
+    flex-direction: column; /* Stack message and time vertically */
+    width: auto;
+    margin: 16px 16px 0 16px;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 16px;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 50%;
+  }
+  
+  .text-left {
+    align-self: flex-start;
+    background-color: #8519ff;
+  }
+  
+  .text-right {
+    background-color: #4f43f5;
+    align-self: flex-end;
+    text-align: right;
+  }
+  
+  .app_message-msg {
+    color: white;
+  }
+
+  .app_message-time-right {
+    font-size: 10px;
+    color: #e0e0e0;
+    margin-right: 16px;
+    margin-top: 5px; /* Add margin to create space between message and time */
+    align-self: flex-end; /* Align time to the end */
+  }
+  
+  .app_message-time-left {
+    font-size: 10px;
+    color: #e0e0e0;
+    margin-left: 16px;
+    margin-top: 5px; /* Add margin to create space between message and time */
+    align-self: flex-start; /* Align time to the end */
+  }
+  
