@@ -1,5 +1,6 @@
 import Message from "../models/MessagesModel.js";
 import User from "../models/UserModel.js";
+import mongoose from "mongoose";
 
 export const searchContacts = async (req, res, next) => {
   try {
@@ -56,7 +57,7 @@ export const getContactsForDMList = async (req, res, next) => {
               else: "$sender",
             },
           },
-          lastMessageTime: { $first: $timestamp },
+          lastMessageTime: { $first: "$timestamp" },
         },
       },
       {

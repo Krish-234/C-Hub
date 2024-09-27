@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import "./ContactsContainer.css";
 import logo from "../../../assets/logo2.png";
-import ProfileInfo from "./Profile-info/ProfileInfo";
-import NewDM from "../../../Components/NewDM/NewDM";
+import {NewDM,ContactList,ProfileInfo} from '../index.js'
 import { apiClient } from "../../../lib/api-client";
 import { GET_DM_CONTACTS_ROUTES } from "../../../utils/constants";
+import { useAppStore } from "../../../store/index.js";
+
 
 const ContactsContainer = () => {
+
+  const { directMessagesContacts,setDirectMessagesContacts} = useAppStore();
 
   useEffect(()=>{
    const getContacts = async () => {
@@ -14,7 +17,7 @@ const ContactsContainer = () => {
       withCredentials:true,
     });
     if(res.data.contacts){
-      console.log(res.data.contacts);
+      setDirectMessagesContacts(res.data.contacts);
     }
    };
 
@@ -29,6 +32,9 @@ const ContactsContainer = () => {
       <div className="contacts_dm">
         <Text text="Direct Messages" />
         <NewDM />
+      </div>
+      <div>
+      <ContactList contacts={directMessagesContacts}/>
       </div>
       <div>
         <Text text="Channels" />

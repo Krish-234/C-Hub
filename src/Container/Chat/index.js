@@ -6,6 +6,7 @@ import MessageBar from "../../Components/MessageBar/MessageBar"
 import MessageContainer from '../../Components/MessageContainer/MessageContainer';
 import ProfileInfo from "./contacts-container/Profile-info/ProfileInfo";
 import NewDM from "../../Components/NewDM/NewDM";
+import ContactList from "../../Components/ContactList/ContactList";
 
 export{
     ChatContainer,
@@ -15,5 +16,6 @@ export{
     MessageBar,
     MessageContainer,
     ProfileInfo,
-    NewDM
+    NewDM,
+    ContactList
 }

@@ -1,0 +1,35 @@
+.app_contacts_list{
+    margin-top: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: none;
+}
+
+.app_contacts_list::-webkit-scrollbar {
+    width: 2px;
+    height: 0px;  /* For horizontal scrollbar */
+  }
+
+.contacts_list-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 5px 15px;
+    border: 1px solid rgb(132, 124, 132);
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.bg-purple{
+    background-color: rgb(25, 101, 194);
+}
+
+.bg-purple:hover{
+    background-color: rgb(52, 116, 195);
+}
+
+.bg-grey:hover{
+    background-color: hsl(0, 4%, 18%);
+}

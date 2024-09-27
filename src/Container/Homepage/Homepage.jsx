@@ -59,7 +59,6 @@ const Homepage = () => {
       if (response.data.user.profileSetup) navigate("/chat");
       else navigate("/profile");
     }
-    console.log({ response });
   };
 
   // Async function for signup API call
@@ -73,7 +72,6 @@ const Homepage = () => {
       setUserInfo(response.data.user);
       navigate("/profile");
     }
-    console.log({ response });
   };
 
   const handleFormSubmit = async (e) => {

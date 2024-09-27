@@ -64,7 +64,7 @@ function App() {
         <Router>
           <Routes>
             <Route
-              path="/auth"
+              path="/"
               element={
                 <AuthRoute>
                   <Homepage />
@@ -87,7 +87,7 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="*" element={<Navigate to="/auth" />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Router>
       </UserProvider>
