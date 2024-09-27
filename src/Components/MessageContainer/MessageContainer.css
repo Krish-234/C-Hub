@@ -120,11 +120,13 @@
 
   .message-img-img{
     cursor: pointer;
+    min-width: 100px;
   }
 
   .message-img-img img{
     max-width: 300px;
-      max-height: 300;
+    max-height: 300;
+    min-width: 100px;
   }
 
   .img_display-container{
