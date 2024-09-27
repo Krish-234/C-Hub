@@ -144,7 +144,8 @@
   }
 
   .img-display-img img{
-    height: 80vh;
+    max-height: 80vh;
+    height: auto;
     width: 100%;
     background-size: contain;
     object-fit: contain;
