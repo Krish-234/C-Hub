@@ -16,6 +16,8 @@ const MessageContainer = () => {
     userInfo,
     setSelectedChatMessages,
     selectedChatMessages,
+    setIsDownloading,
+    setFileDownloadProgress,
   } = useAppStore();
 
   const [showImage, setShowImage] = useState(false);
@@ -77,7 +79,16 @@ const MessageContainer = () => {
   };
 
   const downloadFile = async (url) => {
-    const res = await apiClient.get(`${HOST}/${url}`, { responseType: "blob" });
+    setIsDownloading(true);
+    setFileDownloadProgress(0);
+    const res = await apiClient.get(`${HOST}/${url}`, {
+      responseType: "blob",
+      onDownloadProgress: (progressEvent) => {
+        const {loaded,total} = progressEvent;
+        const percentCompleted = Math.round((loaded*100)/total);
+        setFileDownloadProgress(percentCompleted);
+      },
+    });
     const urlBlob = window.URL.createObjectURL(new Blob([res.data]));
     const link = document.createElement("a");
     link.href = urlBlob;
@@ -86,6 +97,8 @@ const MessageContainer = () => {
     link.click();
     link.remove();
     window.URL.revokeObjectURL(urlBlob);
+    setIsDownloading(false);
+    setFileDownloadProgress(0);
   };
 
   const renderDMMessages = (message) => (
@@ -150,24 +163,30 @@ const MessageContainer = () => {
         {renderMessages()}
         <div ref={scrollRef}></div>
       </div>
-        {showImage && (
-          <div className="img_display-container">
-            <div className="img-display-img">
+      {showImage && (
+        <div className="img_display-container">
+          <div className="img-display-img">
             <img src={`${HOST}/${imageURL}`} alt="wrongURL" />
-            </div>
-            <div className="img_display-icons">
-              <button className="display_download-icon" onClick={() => downloadFile(imageURL)}>
-                <IoMdArrowRoundDown />
-              </button>
-              <button className="display_download-icon" onClick={() => {
+          </div>
+          <div className="img_display-icons">
+            <button
+              className="display_download-icon"
+              onClick={() => downloadFile(imageURL)}
+            >
+              <IoMdArrowRoundDown />
+            </button>
+            <button
+              className="display_download-icon"
+              onClick={() => {
                 setImageURL(null);
                 setShowImage(false);
-              }}>
-                <IoCloseSharp />
-              </button>
-            </div>
+              }}
+            >
+              <IoCloseSharp />
+            </button>
           </div>
-        )}
+        </div>
+      )}
     </>
   );
 };

@@ -75,7 +75,7 @@
 
   .app_message-img img{
   max-width: 100%; 
-  max-height: 400px; 
+  max-height: 300px; 
   width: auto;
   height: auto; 
   object-fit: contain; 
@@ -122,6 +122,11 @@
     cursor: pointer;
   }
 
+  .message-img-img img{
+    max-width: 300px;
+      max-height: 300;
+  }
+
   .img_display-container{
     display: flex;
     justify-content: center;
@@ -139,7 +144,8 @@
   .img-display-img img{
     height: 80vh;
     width: 100%;
-    background-size: cover;
+    background-size: contain;
+    object-fit: contain;
   }
 
   .img_display-icons{

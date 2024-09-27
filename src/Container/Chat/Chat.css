@@ -38,3 +38,31 @@
     width: 0px;
     height: 0px;  /* For horizontal scrollbar */
   }
+
+  .uplaod_display-container,.download_display-container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      backdrop-filter: blur(16px);
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: .5;
+      }
+    }
+
+    .uplaod_display,.download_display{
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
