@@ -36,9 +36,6 @@ const ContactsContainer = () => {
       <div>
       <ContactList contacts={directMessagesContacts}/>
       </div>
-      <div>
-        <Text text="Channels" />
-      </div>
       <ProfileInfo />
     </div>
   );

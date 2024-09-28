@@ -1,6 +1,5 @@
 .app_contacts_list{
     margin-top: 10px;
-    max-height: 200px;
     overflow-y: auto;
     overflow-x: none;
 }
