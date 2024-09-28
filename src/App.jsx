@@ -39,7 +39,6 @@ function App() {
         }else{
           setUserInfo(undefined);
         } 
-        console.log({ res });
       } catch(error) {
         setUserInfo(undefined);
       } finally {

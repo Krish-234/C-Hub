@@ -20,9 +20,7 @@ export const SocketProvider = ({ children }) => {
         query: { userId: userInfo.id },
       });
 
-      socket.current.on("connect", () => {
-        console.log("connected to socket server");
-      });
+      socket.current.on("connect", () => {});
 
       const handleRecieveMessage = (message) => {
         const { selectedChatData, selectedChatType, addMessage, addContactsInDMContacts} = useAppStore.getState();
@@ -32,7 +30,6 @@ export const SocketProvider = ({ children }) => {
           (selectedChatData._id === message.sender._id ||
             selectedChatData._id === message.recipient._id)
         ) {
-            console.log(message);
             addMessage(message);
         }
         addContactsInDMContacts(message);
