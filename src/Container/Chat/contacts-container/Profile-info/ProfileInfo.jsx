@@ -18,8 +18,7 @@ const ProfileInfo = () => {
         {},
         { withCredentials: true }
       );
-
-        console.log(res);
+      
       if (res.status === 200) {
         setUserInfo(null);
         navigate("/auth");
