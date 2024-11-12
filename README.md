@@ -1,1 +1,9 @@
-This is a personal Group chat Website for Real-time Messaging Using React, Node.js and Socket.io Library.
+# 💬 Real-Time Chat App
+
+A responsive real-time chat application built with **React**, **Node.js**, and **Socket.io**. Chat with others instantly in a seamless user experience.
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React, CSS
+- **Backend:** Node.js, Express
+- **Real-Time:** Socket.io
